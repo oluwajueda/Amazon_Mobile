@@ -1,3 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:amazon_mobile/constants/global_variables.dart';
+import 'package:amazon_mobile/features/auth/screens/auth_screen.dart';
+import 'package:amazon_mobile/router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,18 +18,32 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Amazon Clone',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: GlobalVariables.backgroundColor,
+          colorScheme:
+              const ColorScheme.light(primary: GlobalVariables.secondaryColor),
+          appBarTheme: const AppBarTheme(
+              elevation: 0, iconTheme: IconThemeData(color: Colors.black))),
+      onGenerateRoute: (settings) => generateRoute(settings),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Hello"),
+        ),
+        body: Column(
+          // ignore: prefer_const_literals_to_create_immutables
+          children: [
+            const Center(
+              child: Text('Home Page'),
+            ),
+            Builder(builder: (context) {
+              return ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, AuthScreen.routeName);
+                  },
+                  child: Text("Click"));
+            })
+          ],
+        ),
       ),
-      home: const Text('Home Page'),
     );
   }
 }
