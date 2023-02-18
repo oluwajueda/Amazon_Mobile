@@ -28,21 +28,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text("Hello"),
         ),
-        body: Column(
-          // ignore: prefer_const_literals_to_create_immutables
-          children: [
-            const Center(
-              child: Text('Home Page'),
-            ),
-            Builder(builder: (context) {
-              return ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, AuthScreen.routeName);
-                  },
-                  child: Text("Click"));
-            })
-          ],
-        ),
+        body: const AuthScreen(),
       ),
     );
   }
