@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:amazon_mobile/common/widgets/custom_button.dart';
 import 'package:amazon_mobile/common/widgets/custom_textfield.dart';
 import 'package:amazon_mobile/constants/global_variables.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +90,11 @@ class _AuthScreenState extends State<AuthScreen> {
                           CustomTextField(
                             hintText: "Password",
                             controller: _passwordController,
-                          )
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          CustomButton(text: "Sign Up", onTap: () {})
                         ],
                       )),
                 ),
@@ -109,7 +114,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         _auth = val!;
                       });
                     }),
-              )
+              ),
             ],
           ),
         ),
