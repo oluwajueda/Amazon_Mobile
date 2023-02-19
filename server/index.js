@@ -11,6 +11,7 @@ const DB =
 const authRouter = require("./routes/auth");
 
 //middleware
+app.use(express.json());
 app.use(authRouter);
 
 //Connections
@@ -23,6 +24,6 @@ mongoose
     console.log(e);
   });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`connected at port ${PORT}`);
 });
