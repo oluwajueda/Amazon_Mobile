@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:amazon_mobile/common/widgets/bottom_bar.dart';
 import 'package:amazon_mobile/constants/global_variables.dart';
 import 'package:amazon_mobile/features/auth/screens/auth_screen.dart';
 import 'package:amazon_mobile/features/auth/screens/services/auth_service.dart';
@@ -45,7 +46,7 @@ class _MyAppState extends State<MyApp> {
       onGenerateRoute: (settings) => generateRoute(settings),
       home: Scaffold(
         body: Provider.of<UserProvider>(context).user.token.isNotEmpty
-            ? const HomeScreen()
+            ? const BottomBar()
             : const AuthScreen(),
       ),
     );

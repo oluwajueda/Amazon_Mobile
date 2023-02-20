@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:amazon_mobile/common/widgets/bottom_bar.dart';
 import 'package:amazon_mobile/constants/error-handling.dart';
 import 'package:amazon_mobile/constants/global_variables.dart';
 import 'package:amazon_mobile/constants/utils.dart';
@@ -82,7 +83,7 @@ class AuthService {
 
           Navigator.pushNamedAndRemoveUntil(
             context,
-            HomeScreen.routeName,
+            BottomBar.routeName,
             (route) => false,
           );
         },
