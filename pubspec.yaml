@@ -39,6 +39,8 @@ dependencies:
   json_serializable: ^4.1.3
   http: ^0.13.5
   envied: ^0.3.0
+  provider: ^6.0.5
+  shared_preferences: ^2.0.17
 
 dev_dependencies:
   flutter_test:
