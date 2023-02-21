@@ -1,4 +1,7 @@
 import 'package:amazon_mobile/constants/global_variables.dart';
+import 'package:amazon_mobile/features/account/widgets/below_app_bar.dart';
+import 'package:amazon_mobile/features/account/widgets/orders.dart';
+import 'package:amazon_mobile/features/account/widgets/top_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -17,7 +20,45 @@ class AccountScreen extends StatelessWidget {
                 gradient: GlobalVariables.appBarGradient,
               ),
             ),
+            title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    alignment: Alignment.topLeft,
+                    child: Image.asset(
+                      "assets/images/amazon_in.png",
+                      width: 120,
+                      height: 45,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    child: Row(
+                      children: const [
+                        Padding(
+                          padding: EdgeInsets.only(right: 15),
+                          child: Icon(Icons.notifications_outlined),
+                        ),
+                        Icon(Icons.search)
+                      ],
+                    ),
+                  )
+                ]),
           )),
+      body: Column(
+        children: const [
+          BelowAppBar(),
+          SizedBox(
+            height: 10,
+          ),
+          TopButtons(),
+          SizedBox(
+            height: 20,
+          ),
+          Orders()
+        ],
+      ),
     );
   }
 }
