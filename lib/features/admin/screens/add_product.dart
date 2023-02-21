@@ -1,4 +1,5 @@
 import 'package:amazon_mobile/constants/global_variables.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -18,32 +19,52 @@ class _AddProductScreenState extends State<AddProductScreen> {
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(50),
           child: AppBar(
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(
-                gradient: GlobalVariables.appBarGradient,
+              flexibleSpace: Container(
+                decoration: const BoxDecoration(
+                  gradient: GlobalVariables.appBarGradient,
+                ),
               ),
-            ),
-            title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    alignment: Alignment.topLeft,
-                    child: Image.asset(
-                      "assets/images/amazon_in.png",
-                      width: 120,
-                      height: 45,
-                      color: Colors.black,
-                    ),
+              title: const Text(
+                "Add Product",
+                style: TextStyle(color: Colors.black),
+              ))),
+      body: SingleChildScrollView(
+        child: Form(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                DottedBorder(
+                    child: Container(
+                  width: double.infinity,
+                  height: 150,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                  child: Column(
+                    children: [
+                      const Icon(
+                        Icons.folder_open,
+                        size: 40,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        "Select Product Images",
+                        style: TextStyle(
+                            fontSize: 15, color: Colors.grey.shade400),
+                      )
+                    ],
                   ),
-                  const Text(
-                    "Admin",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  )
-                ]),
-          )),
+                ))
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
