@@ -1,4 +1,6 @@
 import 'package:amazon_mobile/constants/global_variables.dart';
+import 'package:amazon_mobile/features/home/widgets/address_box.dart';
+import 'package:amazon_mobile/features/home/widgets/top_categories.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -90,17 +92,17 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: SingleChildScrollView(
-          // child: Column(
-          //   children: const [
-          //     AddressBox(),
-          //     SizedBox(height: 10),
-          //     TopCategories(),
-          //     SizedBox(height: 10),
-          //     CarouselImage(),
-          //     DealOfDay(),
-          //   ],
-          // ),
-          ),
+        child: Column(
+          children: const [
+            AddressBox(),
+            SizedBox(height: 10),
+            TopCategories(),
+            //     SizedBox(height: 10),
+            //     CarouselImage(),
+            //     DealOfDay(),
+          ],
+        ),
+      ),
     );
   }
 }
