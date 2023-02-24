@@ -4,6 +4,7 @@ import 'package:amazon_mobile/common/widgets/custom_button.dart';
 import 'package:amazon_mobile/common/widgets/custom_textfield.dart';
 import 'package:amazon_mobile/constants/global_variables.dart';
 import 'package:amazon_mobile/constants/utils.dart';
+import 'package:amazon_mobile/features/admin/services/admin_services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
   String category = "Mobiles";
   List<File> images = [];
 
+  final AdminServices adminServices = AdminServices();
+
   @override
   void dispose() {
     super.dispose();
@@ -36,6 +39,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
     quantityController.dispose();
   }
 
+  final _addProductFormKey = GlobalKey<FormState>();
+
   List<String> productCategories = [
     "Mobiles",
     "Essentials",
@@ -44,9 +49,22 @@ class _AddProductScreenState extends State<AddProductScreen> {
     "Fashion",
   ];
 
+  void sellProduct() {
+    if (_addProductFormKey.currentState!.validate() && images.isNotEmpty) {
+      adminServices.sellProduct(
+          context: context,
+          name: productNameController.text,
+          description: descriptionController.text,
+          price: double.parse(priceController.text),
+          quantity: double.parse(quantityController.text),
+          category: category,
+          images: images);
+    }
+  }
+
   void selectImages() async {
     var res = await pickImages();
-    print("hello");
+
     setState(() {
       images = res;
     });
@@ -69,6 +87,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
               ))),
       body: SingleChildScrollView(
         child: Form(
+          key: _addProductFormKey,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
@@ -164,7 +183,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                CustomButton(text: "Sell", onTap: () {})
+                CustomButton(text: "Sell", onTap: sellProduct)
               ],
             ),
           ),

@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const adminRouter = require("./routes/admin");
 
 const PORT = 3000;
 
@@ -13,6 +14,7 @@ const authRouter = require("./routes/auth");
 //middleware
 app.use(express.json());
 app.use(authRouter);
+app.use(adminRouter);
 
 //Connections
 mongoose
