@@ -1,3 +1,4 @@
+import 'package:amazon_mobile/common/widgets/custom_button.dart';
 import 'package:amazon_mobile/common/widgets/custom_textfield.dart';
 import 'package:amazon_mobile/constants/global_variables.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -119,11 +120,21 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   width: double.infinity,
                   child: DropdownButton(
                     value: category,
-                    items: items,
-                    onChanged: onChanged,
+                    items: productCategories.map((String item) {
+                      return DropdownMenuItem(value: item, child: Text(item));
+                    }).toList(),
+                    onChanged: (String? newVal) {
+                      setState(() {
+                        category = newVal!;
+                      });
+                    },
                     icon: const Icon(Icons.keyboard_arrow_down),
                   ),
-                )
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                CustomButton(text: "Sell", onTap: () {})
               ],
             ),
           ),
