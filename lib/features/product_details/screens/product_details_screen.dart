@@ -9,6 +9,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   static const String routeName = '/product-details';
@@ -127,7 +128,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               return Builder(
                   builder: (BuildContext context) => Image.network(
                         i,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                         height: 300,
                       ));
             }).toList(),
@@ -175,8 +176,35 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: CustomButton(text: "Add to Cart", onTap: (() {})),
-          )
+            child: CustomButton(
+                text: "Add to Cart",
+                onTap: () {},
+                color: const Color.fromRGBO(254, 216, 19, 1)),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+            color: Colors.black12,
+            height: 5,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Text(
+              "Rate The Product",
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+          ),
+          RatingBar.builder(
+              initialRating: 0,
+              minRating: 1,
+              allowHalfRating: true,
+              itemCount: 5,
+              itemPadding: EdgeInsets.symmetric(horizontal: 4),
+              direction: Axis.horizontal,
+              itemBuilder: (context, _) =>
+                  const Icon(Icons.star, color: GlobalVariables.secondaryColor),
+              onRatingUpdate: (rating) {})
         ],
       )),
     );
