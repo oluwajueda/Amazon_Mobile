@@ -117,7 +117,9 @@ class _SearchScreenState extends State<SearchScreen> {
           : Column(
               children: [
                 const AddressBox(),
-                const SizedBox(),
+                const SizedBox(
+                  height: 10,
+                ),
                 Expanded(
                     child: ListView.builder(
                         itemCount: products!.length,
