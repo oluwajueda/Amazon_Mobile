@@ -1,8 +1,14 @@
+import 'package:amazon_mobile/common/widgets/custom_button.dart';
 import 'package:amazon_mobile/constants/global_variables.dart';
+import 'package:amazon_mobile/features/home/widgets/address_box.dart';
+import 'package:amazon_mobile/features/home/widgets/cart_product.dart';
+import 'package:amazon_mobile/features/home/widgets/cart_subtotal.dart';
 import 'package:amazon_mobile/features/search/screens/search_screen.dart';
+import 'package:amazon_mobile/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -18,6 +24,7 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<UserProvider>().user;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -89,6 +96,38 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ],
           ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const AddressBox(),
+            const CartSubtotal(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CustomButton(
+                text: "Proceed to Buy, (${user.cart.length} items)",
+                onTap: () {},
+                color: Colors.yellow[600],
+              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Container(
+              color: Colors.black12.withOpacity(0.08),
+              height: 1,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            ListView.builder(
+                shrinkWrap: true,
+                itemCount: user.cart.length,
+                itemBuilder: (context, index) {
+                  return CartProduct(index: index);
+                })
+          ],
         ),
       ),
     );
